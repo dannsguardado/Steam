@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace STEAM.Services
 {
-    public interface IProjectsService   
+    public interface IProjectsService
     {
         Task<List<GetProjectDTO>> GetProjects();
         Task<GetProjectDTO?> GetProject(int id);
@@ -37,6 +37,7 @@ namespace STEAM.Services
         public async Task<GetProjectDTO?> GetProject(int id)
         {
             var result = await _dbContext.Projects
+                .Include(x => x.Photos)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             return _mapper.Map<GetProjectDTO>(result);
@@ -53,7 +54,7 @@ namespace STEAM.Services
         {
             var entity = await _dbContext.Projects.FirstOrDefaultAsync(x => x.Id == project.Id);
 
-            if(entity == null)
+            if (entity == null)
             {
                 return;
             }

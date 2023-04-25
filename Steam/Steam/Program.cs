@@ -15,6 +15,7 @@ builder.Services.AddDbContextFactory<DatabaseContext>((_, options) =>
 
 // Add services to the container.
 builder.Services.AddScoped<IProjectsService, ProjectsService>();
+builder.Services.AddScoped<IPhotosService, PhotosService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

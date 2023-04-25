@@ -6,6 +6,7 @@ namespace STEAM.Database
     public class DatabaseContext : DbContext
     {
         public DbSet<Project> Projects => Set<Project>();
+        public DbSet<Photo> Photos => Set<Photo>();
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {

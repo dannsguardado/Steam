@@ -15,13 +15,16 @@ namespace STEAM.Database.Entities
         public DateTime Date { get; set; } = default!;
 
         //Navigations
+        public List<Photo> Photos { get; set; } = default!;
     }
 
     internal class ProjectConfiguration : IEntityTypeConfiguration<Project>
     {
         public void Configure(EntityTypeBuilder<Project> builder)
         {
-
+            builder.HasMany(x => x.Photos)
+                   .WithOne(x => x.Project)
+                   .HasForeignKey(x => x.ProjectId);
         }
     }
 }
